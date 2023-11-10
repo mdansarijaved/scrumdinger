@@ -1,63 +1,50 @@
-//
-//  ContentView.swift
-//  scrumdinger
-//
-//  Created by Javed Ansari on 10/11/23.
-//
-
 import SwiftUI
-import SwiftData
 
-struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+struct ContentView: View{
+    var body: some View{
+        VStack{
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.blue)
+            Text("Javed Ansari IOS developer")
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+        .padding()
+        
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct MeetingView: View{
+    var body: some View{
+        VStack {
+            ProgressView(value: 10, total: 15)
+                .padding(30)
+            HStack{
+                VStack {
+                    Text("javed sabka baap hai")
+                    Label("300", systemImage: "hourglass.tophalf.fill")
+                }
+                VStack {
+                    Text("javed sabka baap hai")
+                    Label("600",systemImage: "hourglass.bottomhalf.fill")
+                }
+
+            }
+        }
+            
+    }
+}
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+        
+    }
+}
+struct MeetingView_Previews: PreviewProvider {
+    static var previews: some View {
+        MeetingView()
+    }
 }
