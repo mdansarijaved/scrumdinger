@@ -10,11 +10,11 @@ import SwiftData
 
 @main
 struct scrumdingerApp: App {
-
+    @State private var scrums = DailyScrum.sampleData
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ScrumView(scrums: $scrums)
         }
-        .modelContainer(for: Item.self)
+       
     }
 }

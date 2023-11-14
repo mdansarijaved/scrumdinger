@@ -1,10 +1,3 @@
-//
-//  CardView.swift
-//  scrumdinger
-//
-//  Created by Javed Ansari on 10/11/23.
-//
-
 import SwiftUI
 
 
@@ -23,9 +16,9 @@ struct CardView: View {
             }
             .font(.caption)
         }
-        .padding()       
+        .padding()
+        .foregroundColor(scrum.theme.accentColor)
     }
-    
 }
 
 
